@@ -1,4 +1,4 @@
-package ru.rafaelrs.httpremotesingle;
+package ru.rafaelrs.httpremotesingle.activity;
 
 import android.app.ActionBar;
 import android.content.Context;
@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import ru.rafaelrs.httpremotesingle.R;
 import ru.rafaelrs.httpremotesingle.system.SystemMenubar;
 
 /**
@@ -78,6 +79,14 @@ public class Settings extends PreferenceActivity implements Preference.OnPrefere
 
     public static boolean isMenuEnabled(Context context) {
         return PreferenceManager.getDefaultSharedPreferences(context).getBoolean("enableMenu", false);
+    }
+
+    public static String getDeviceId(Context context) {
+        return PreferenceManager.getDefaultSharedPreferences(context).getString("deviceId", "");
+    }
+
+    public static String getClientId(Context context) {
+        return PreferenceManager.getDefaultSharedPreferences(context).getString("clientId", "");
     }
 
     @Override
