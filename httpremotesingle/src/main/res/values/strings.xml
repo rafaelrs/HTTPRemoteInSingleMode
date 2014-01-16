@@ -2,6 +2,18 @@
 <resources>
 
     <string name="app_name">HTTPRemoteInSingleMode</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">Настройки</string>
+    <string name="action_close">Закрыть</string>
+    <string name="action_nativelauncher">Родной лаунчер</string>
+    <string name="settingscat_system">Системные настройки</string>
+    <string name="settingscat_id">Идентификация</string>
+    <string name="settings_password">Пароль</string>
+    <string name="settings_password_desc">Пароль для доступа к этим настройками программы</string>
+    <string name="settings_resendFreq">Частота повторной высылки</string>
+    <string name="settings_resendFreq_desc">Повторная высылка каждые(мин):</string>
+    <string name="settings_enableMenu">Инженерное меню</string>
+    <string name="settings_enableMenu_desc">Включает стандартную панель с настройками устройства</string>
+    <string name="settings_deviceId">Идентификатор устройства</string>
+    <string name="settings_clientId">Идентификатор клиента</string>
 
 </resources>

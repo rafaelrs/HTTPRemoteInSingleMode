@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+        android:title="@string/settingscat_id">
+        <EditTextPreference
+            android:key="deviceId"
+            android:title="@string/settings_deviceId"
+            android:defaultValue="" />
+        <EditTextPreference
+            android:key="clientId"
+            android:title="@string/settings_clientId"
+            android:defaultValue="" />
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:title="@string/settingscat_system">
+        <CheckBoxPreference
+            android:key="enableMenu"
+            android:title="@string/settings_enableMenu"
+            android:summary="@string/settings_enableMenu_desc"
+            android:defaultValue="false" />
+        <EditTextPreference
+            android:key="password"
+            android:title="@string/settings_password"
+            android:summary="@string/settings_password_desc"
+            android:defaultValue=""
+            android:password="true"/>
+        <EditTextPreference
+            android:inputType="number"
+            android:key="resendFreq"
+            android:title="@string/settings_resendFreq"
+            android:summary="@string/settings_resendFreq_desc"
+            android:defaultValue="15"/>
+    </PreferenceCategory>
+</PreferenceScreen>
