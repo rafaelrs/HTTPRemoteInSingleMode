@@ -80,6 +80,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     private void openSettings() {
 
+        final String currPass = Settings.getPassword(this);
+        final Intent settingsIntent = new Intent(this, Settings.class);
         if (Settings.getPassword(this) != "") {
             // Используем AlertDialog для того чтобы запросить пароль (если в настройках он указан)
             AlertDialog.Builder alert = new AlertDialog.Builder(this);
@@ -96,8 +98,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 public void onClick(DialogInterface dialog, int whichButton) {
                     String value = input.getText().toString();
                     // Совпало? откроем настройки
-                    if (Settings.getPassword(getApplicationContext()) == value) {
-                        startActivity(new Intent(getApplicationContext(), Settings.class));
+                    if (currPass.equals(value)) {
+                        startActivity(settingsIntent);
+                    } else {
+                        Toast.makeText(getBaseContext(), getResources().getString(R.string.text_passincorrect), Toast.LENGTH_LONG).show();
                     }
                 }
             });
@@ -111,7 +115,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
             alert.show();
         } else {
             // Если пароль пустой, значит настройки можно открыть без него
-            startActivity(new Intent(this, Settings.class));
+            startActivity(settingsIntent);
         }
 
     }

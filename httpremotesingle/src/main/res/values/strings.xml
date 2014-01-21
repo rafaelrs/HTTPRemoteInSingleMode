@@ -22,5 +22,6 @@
     <string name="text_thanks">Спасибо</string>
     <string name="text_passheader">Введите пароль</string>
     <string name="text_passtext">Пароль</string>
+    <string name="text_passincorrect">Неверный пароль</string>
 
 </resources>
