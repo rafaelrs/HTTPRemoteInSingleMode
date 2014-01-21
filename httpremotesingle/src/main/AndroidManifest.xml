@@ -30,6 +30,11 @@
             android:label="None">
         </activity>
         <activity
+            android:name=".activity.PopupActivity"
+            android:label="None"
+            android:theme="@style/PopupTheme">
+        </activity>
+        <activity
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
             android:name=".activity.MainActivity"
             android:label="@string/app_name" >

@@ -6,9 +6,7 @@ import android.content.Intent;
 
 import ru.rafaelrs.httpremotesingle.activity.MainActivity;
 
-/**
- * Created by rafaelrs on 07.12.13.
- */
+// Класс используемый для старта приложения при загрузке системы
 public class MyBroadcastReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {

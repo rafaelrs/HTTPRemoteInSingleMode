@@ -2,7 +2,6 @@ package ru.rafaelrs.httpremotesingle.activity;
 
 import android.app.ActionBar;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
@@ -10,16 +9,13 @@ import android.preference.EditTextPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import ru.rafaelrs.httpremotesingle.R;
 import ru.rafaelrs.httpremotesingle.system.SystemMenubar;
 
-/**
- * Created by 1111 on 18.12.13.
- */
+// Активити ввода и хранения настроек
 public class Settings extends PreferenceActivity implements Preference.OnPreferenceClickListener, SharedPreferences.OnSharedPreferenceChangeListener {
 
     SharedPreferences shared;
@@ -29,18 +25,16 @@ public class Settings extends PreferenceActivity implements Preference.OnPrefere
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.settings);
         Preference enableMenu = findPreference("enableMenu");
+        // Обработчик нажатия на опцию
         enableMenu.setOnPreferenceClickListener(this);
-        //EditTextPreference deviceId = (EditTextPreference) findPreference("deviceId");
-        //deviceId.setOnPreferenceChangeListener(this);
-        //EditTextPreference clientId = (EditTextPreference) findPreference("clientId");
-        //clientId.setOnPreferenceChangeListener(this);
-
 
         shared = PreferenceManager.getDefaultSharedPreferences(this);
 
+        // В заголовке активити добавляем стрелочку позволяющей вернутся назад (кнопки то мы заблокировали :))
         ActionBar currBar = getActionBar();
         currBar.setDisplayHomeAsUpEnabled(true);
 
+        // Обновим подписи опций
         updatePrefFields();
     }
 
@@ -49,14 +43,17 @@ public class Settings extends PreferenceActivity implements Preference.OnPrefere
     protected void onResume(){
         super.onResume();
 
+        // Обработчик изменения опций
         getPreferenceScreen().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
     }
 
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        // Обновим подписи опций
         updatePrefFields();
     }
 
     private void updatePrefFields() {
+        // Обновим подписи опций
         EditTextPreference deviceId = (EditTextPreference) findPreference("deviceId");
         deviceId.setSummary(shared.getString("deviceId", ""));
         EditTextPreference clientId = (EditTextPreference) findPreference("clientId");
@@ -69,6 +66,7 @@ public class Settings extends PreferenceActivity implements Preference.OnPrefere
     public boolean onPreferenceClick(Preference preference) {
         CheckBoxPreference enableMenu = (CheckBoxPreference) findPreference("enableMenu");
 
+        // В зависимости от выбранной опции - скрываем, показываем системную панель
         if (enableMenu.isChecked()) {
             SystemMenubar.show();
         } else {
@@ -77,6 +75,26 @@ public class Settings extends PreferenceActivity implements Preference.OnPrefere
         return true;
     }
 
+    // Подгрузка меню для ActionBar
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    // Обработчик выбора пункта меню в ActionBar
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_close:
+            case android.R.id.home:
+                finish();
+                break;
+        }
+        return true;
+    }
+
+    // Блок статических методов для получения тех или иных опций
     public static boolean isMenuEnabled(Context context) {
         return PreferenceManager.getDefaultSharedPreferences(context).getBoolean("enableMenu", false);
     }
@@ -89,21 +107,9 @@ public class Settings extends PreferenceActivity implements Preference.OnPrefere
         return PreferenceManager.getDefaultSharedPreferences(context).getString("clientId", "");
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
+    public static String getPassword(Context context) {
+        return PreferenceManager.getDefaultSharedPreferences(context).getString("password", "");
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_close:
-            case android.R.id.home:
-                finish();
-                break;
-        }
-        return true;
-    }
 }
 

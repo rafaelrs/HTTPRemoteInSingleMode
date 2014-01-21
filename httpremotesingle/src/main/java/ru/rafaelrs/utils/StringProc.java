@@ -3,11 +3,10 @@ package ru.rafaelrs.utils;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-/**
- * Created by rafaelrs on 16.01.14.
- */
+// Класс для работы над строками
 public class StringProc {
 
+    // Статический метод получения md5 хеша строки
     public static final String md5(final String s) {
         try {
             // Create MD5 Hash

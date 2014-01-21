@@ -2,8 +2,11 @@
 <resources>
 
     <string name="app_name">HTTPRemoteInSingleMode</string>
+
     <string name="action_settings">Настройки</string>
     <string name="action_close">Закрыть</string>
+    <string name="action_ok">ОК</string>
+    <string name="action_cancel">Отмена</string>
     <string name="action_nativelauncher">Родной лаунчер</string>
     <string name="settingscat_system">Системные настройки</string>
     <string name="settingscat_id">Идентификация</string>
@@ -15,5 +18,9 @@
     <string name="settings_enableMenu_desc">Включает стандартную панель с настройками устройства</string>
     <string name="settings_deviceId">Идентификатор устройства</string>
     <string name="settings_clientId">Идентификатор клиента</string>
+
+    <string name="text_thanks">Спасибо</string>
+    <string name="text_passheader">Введите пароль</string>
+    <string name="text_passtext">Пароль</string>
 
 </resources>
