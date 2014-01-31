@@ -14,9 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.IOException;
-import java.net.HttpURLConnection;
-
+import ru.rafaelrs.httpremoteservice.MessagingService;
 import ru.rafaelrs.httpremotesingle.HTTPMessaging;
 import ru.rafaelrs.httpremotesingle.R;
 import ru.rafaelrs.httpremotesingle.system.SystemMenubar;
@@ -50,6 +48,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
         } else {
             SystemMenubar.hide();
         }
+
+        if (!MessagingService.isStarted) {
+            startService(new Intent(this, MessagingService.class));
+        }
     }
 
     @Override
@@ -63,7 +65,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 break;
             // Кнопка отправки сообщения 1
             case R.id.button_1:
-                HTTPMessaging.send(this, "1", uiHandler);
+                HTTPMessaging.sheduleSend(this, "1", uiHandler);
 
                 // Откроем уведомление о том, что сообщение отправлено
                 //Intent popupIntent = new Intent(this, PopupActivity.class);

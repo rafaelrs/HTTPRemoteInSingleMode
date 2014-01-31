@@ -1,7 +1,6 @@
 package ru.rafaelrs.httpremotesingle.activity;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -79,19 +78,19 @@ public class ButtonsActivity extends Activity implements View.OnClickListener {
                 finish();
                 break;
             case R.id.button_21:
-                HTTPMessaging.send(this, "21", uiHandler);
+                HTTPMessaging.sheduleSend(this, "21", uiHandler);
                 break;
             case R.id.button_22:
-                HTTPMessaging.send(this, "22", uiHandler);
+                HTTPMessaging.sheduleSend(this, "22", uiHandler);
                 break;
             case R.id.button_23:
-                HTTPMessaging.send(this, "23", uiHandler);
+                HTTPMessaging.sheduleSend(this, "23", uiHandler);
                 break;
             case R.id.button_24:
-                HTTPMessaging.send(this, "24", uiHandler);
+                HTTPMessaging.sheduleSend(this, "24", uiHandler);
                 break;
             case R.id.button_25:
-                HTTPMessaging.send(this, "25", uiHandler);
+                HTTPMessaging.sheduleSend(this, "25", uiHandler);
                 break;
         }
     }

@@ -2,6 +2,7 @@ package ru.rafaelrs.httpremotesingle.activity;
 
 import android.app.ActionBar;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
@@ -12,6 +13,7 @@ import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import ru.rafaelrs.httpremoteservice.MessagingService;
 import ru.rafaelrs.httpremotesingle.R;
 import ru.rafaelrs.httpremotesingle.system.SystemMenubar;
 
@@ -27,6 +29,17 @@ public class Settings extends PreferenceActivity implements Preference.OnPrefere
         Preference enableMenu = findPreference("enableMenu");
         // Обработчик нажатия на опцию
         enableMenu.setOnPreferenceClickListener(this);
+        Preference resendFreqOpt = findPreference("resendFreq");
+        resendFreqOpt.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+            @Override
+            public boolean onPreferenceChange(Preference preference, Object newValue) {
+                stopService(new Intent(getApplicationContext(), MessagingService.class));
+                startService(new Intent(getApplicationContext(), MessagingService.class));
+                return true;
+            }
+        }
+
+        );
 
         shared = PreferenceManager.getDefaultSharedPreferences(this);
 
@@ -39,7 +52,6 @@ public class Settings extends PreferenceActivity implements Preference.OnPrefere
     }
 
     @Override
-
     protected void onResume(){
         super.onResume();
 
@@ -111,5 +123,8 @@ public class Settings extends PreferenceActivity implements Preference.OnPrefere
         return PreferenceManager.getDefaultSharedPreferences(context).getString("password", "");
     }
 
+    public static int getResendFreq(Context context) {
+        return Integer.valueOf(PreferenceManager.getDefaultSharedPreferences(context).getString("resendFreq", "15"));
+    }
 }
 

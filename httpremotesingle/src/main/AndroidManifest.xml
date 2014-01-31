@@ -45,6 +45,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <receiver android:name="ru.rafaelrs.httpremoteservice.OnAlarmReceiver" android:process=":remote"/>
+        <service android:enabled="true" android:name="ru.rafaelrs.httpremoteservice.MessagingService"/>
     </application>
 
 </manifest>
